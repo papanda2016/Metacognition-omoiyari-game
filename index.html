@@ -1,33 +1,112 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>どうしようかな？ ロールプレイ・ゲーム</title>
-<style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6faf3;--card:#fff;--tx:#25332a;--sub:#5d7064;--bd:#dbe7d6;--g:#4a9d5b;--tint:#4a9d5b1c}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141b16;--card:#1e2822;--tx:#e6efe8;--sub:#9fb2a5;--bd:#2f3d34}}
-:root[data-theme=dark]{--bg:#141b16;--card:#1e2822;--tx:#e6efe8;--sub:#9fb2a5;--bd:#2f3d34}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>ぼくの たんけん</title><style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fbf9f4;--card:#fff;--tx:#2f3a33;--sub:#6a746c;--ln:#e6e0d3}
+@media(prefers-color-scheme:dark){:root{--bg:#181a18;--card:#232623;--tx:#eceee9;--sub:#a3aaa3;--ln:#363b36}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.8}
-.wrap{max-width:640px;margin:0 auto;padding:16px 14px 40px}
-h1{font-size:20px;text-align:center;margin:8px 0}
-.lead{text-align:center;color:var(--sub);font-size:14px;margin:4px 0 14px}
-button{font:inherit;cursor:pointer;color:var(--tx)}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin:10px 0}
-.sc{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:10px 14px;margin:8px 0}
-.sc b{display:block;font-size:15px}.sc small{color:var(--sub)}.em{font-size:28px}
-.say{background:var(--tint);border-radius:14px;padding:10px 14px;margin:10px 0;font-size:15px}
-.me{background:#5b8def18;border-radius:14px;padding:8px 14px;margin:10px 0;font-size:14.5px}
-.ch{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--bd);border-radius:14px;padding:12px 14px;margin:8px 0;font-size:15px}
-.ch:hover,.ch:focus{border-color:var(--g)}
-.sec{border-radius:12px;padding:10px 12px;margin:8px 0;font-size:14.5px}
-.sec h3{margin:0 0 2px;font-size:13px}
-.b{background:#e0b43a1f}.c{background:var(--tint)}
-.btn{display:inline-block;border:2px solid var(--g);background:var(--card);border-radius:999px;padding:9px 16px;margin:6px 6px 0 0;font-weight:700;font-size:14px}
-.btn.p{background:var(--g);color:#fff}.btn.on{background:var(--tint)}
-.mini{font-size:13px;color:var(--sub)}.tag{font-size:12px;color:var(--sub)}
-.chip{font:inherit;border:2px solid var(--bd);background:var(--card);border-radius:999px;padding:6px 12px;margin:4px 4px 0 0;font-size:14px}
-.chip.on{border-color:var(--g);background:var(--tint);font-weight:700}
-.meta{border:2px dashed var(--g)}.meta .q{font-size:14px;margin:8px 0 0}
-</style></head><body><div class="wrap" id="app"></div>
+#hub{max-width:560px;margin:0 auto;padding:24px 16px 48px;min-height:100vh}
+#hub h1{font-size:24px;text-align:center;margin:10px 0 4px}.lead{text-align:center;color:var(--sub);font-size:14px;margin:0 0 18px}
+.door{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--card);color:var(--tx);border:1.5px solid var(--ln);border-radius:18px;padding:16px;margin:12px 0;font:inherit;cursor:pointer}
+.door .e{flex:none;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:32px}
+.door b{font-size:17px}.door small{display:block;color:var(--sub);font-size:13.5px;line-height:1.6;margin-top:2px}
+.note{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:12px 14px;font-size:13.5px;color:var(--sub);margin-top:18px}
+.back{max-width:640px;margin:0 auto;padding:10px 14px 0}.back button{font:inherit;font-size:13px;background:transparent;color:inherit;border:1px solid currentColor;opacity:.75;border-radius:999px;padding:3px 14px;cursor:pointer}
+section{min-height:100vh}
+#s3{max-width:560px;margin:0 auto;padding-bottom:40px}#s3 h1{font-size:22px;text-align:center;margin:8px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 14px}
+.mc{font:inherit;color:#2b2b2b;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;aspect-ratio:3/4;padding:6px;border-radius:12px;border:3px solid var(--cc);background:linear-gradient(160deg,#fff 40%,color-mix(in srgb,var(--cc) 28%,#fff));cursor:pointer;text-align:center;font-size:11px;line-height:1.3;overflow:hidden}
+.mc .me2{width:100%;font-size:0}.mc .me2 svg{border-radius:8px}.mc b{font-size:11.5px}.mc i{font-style:normal;color:#c58a00;font-size:10px}
+.mc.lk{--cc:#bbb;background:repeating-linear-gradient(45deg,#e8e6e1,#e8e6e1 8px,#dedbd4 8px,#dedbd4 16px);color:#8a8780;cursor:default;border-style:dashed}
+.tab{font:inherit;color:inherit;border:2px solid var(--ln);background:var(--card);border-radius:999px;padding:6px 14px;margin:4px;font-size:14px;cursor:pointer}.tab.on{border-color:#4a9d5b;font-weight:700}
+#ov{position:fixed;inset:0;z-index:99;background:rgba(10,10,20,.78);display:grid;place-items:center;animation:ovin .25s;padding:16px}
+.ovb{display:flex;flex-direction:column;align-items:center;gap:14px;perspective:900px}
+.ovx{font:inherit;border:0;border-radius:999px;padding:8px 26px;background:#fff;color:#333;cursor:pointer}
+.new{color:#ffe27a;font-weight:700;font-size:18px;animation:pulse 1s infinite alternate}
+.cc{position:relative;overflow:hidden;width:min(80vw,320px);aspect-ratio:3/4.4;border-radius:22px;border:6px solid var(--cc);background:linear-gradient(165deg,#fff 45%,color-mix(in srgb,var(--cc) 30%,#fff));color:#2b2b2b;display:flex;flex-direction:column;align-items:center;padding:14px 16px;text-align:center;box-shadow:0 14px 40px #0008;animation:cardin .6s cubic-bezier(.2,1.3,.4,1)}
+.ct{display:flex;justify-content:space-between;width:100%;font-size:12px;font-weight:700;color:#8a6a00}
+.ce{width:100%;margin:10px 0 2px;font-size:0}.ce svg{border-radius:12px}
+.cn{font-size:19px;font-weight:700}.cs{font-size:12px;color:#6a6a6a;margin-top:2px}
+.cx{font-size:15px;line-height:1.7;margin-top:12px;flex:1;display:flex;align-items:center}
+.cf{font-size:12px;font-weight:700;color:#fff;background:var(--cc);border-radius:999px;padding:2px 14px;margin-top:8px}
+.foil::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,#fff9 48%,transparent 66%);transform:translateX(-120%);animation:shine 2.4s .6s infinite}
+@keyframes cardin{from{transform:scale(.2) rotateY(100deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes shine{to{transform:translateX(120%)}}@keyframes ovin{from{opacity:0}}@keyframes pulse{to{transform:scale(1.08)}}
+@media(prefers-reduced-motion:reduce){.cc,.foil::after,.new{animation:none}}
+#s1{--bg:#f6faf3;--card:#fff;--tx:#25332a;--sub:#5d7064;--bd:#dbe7d6;--g:#4a9d5b;--tint:#4a9d5b1c;background:var(--bg);color:var(--tx);line-height:1.8}
+#s2{--bg:#fbf8f3;--card:#fff;--tx:#3a3430;--sub:#7a6f66;--ln:#eadfd2;--ac:#e08a4a;background:var(--bg);color:var(--tx);font-size:17px;line-height:1.8}
+@media(prefers-color-scheme:dark){#s1{--bg:#141b16;--card:#1e2822;--tx:#e6efe8;--sub:#9fb2a5;--bd:#2f3d34}#s2{color-scheme:dark;--bg:#1d1a17;--card:#272320;--tx:#f0e9e1;--sub:#a99d92;--ln:#3a342f;--ac:#e89a5c}}
+#s1 .wrap{max-width:640px;margin:0 auto;padding:16px 14px 40px}
+#s1 h1{font-size:20px;text-align:center;margin:8px 0}
+#s1 .lead{text-align:center;color:var(--sub);font-size:14px;margin:4px 0 14px}
+#s1 button{font:inherit;cursor:pointer;color:var(--tx)}
+#s1 .card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin:10px 0}
+#s1 .sc{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:10px 14px;margin:8px 0}
+#s1 .sc b{display:block;font-size:15px}
+#s1 .sc small{color:var(--sub)}
+#s1 .em{flex:none;width:68px}#s1 .em svg{border-radius:10px}
+#s1 .say{background:var(--tint);border-radius:14px;padding:10px 14px;margin:10px 0;font-size:15px}
+#s1 .me{background:#5b8def18;border-radius:14px;padding:8px 14px;margin:10px 0;font-size:14.5px}
+#s1 .ch{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--bd);border-radius:14px;padding:12px 14px;margin:8px 0;font-size:15px}
+#s1 .ch:hover,#s1 .ch:focus{border-color:var(--g)}
+#s1 .sec{border-radius:12px;padding:10px 12px;margin:8px 0;font-size:14.5px}
+#s1 .sec h3{margin:0 0 2px;font-size:13px}
+#s1 .b{background:#e0b43a1f}
+#s1 .c{background:var(--tint)}
+#s1 .btn{display:inline-block;border:2px solid var(--g);background:var(--card);border-radius:999px;padding:9px 16px;margin:6px 6px 0 0;font-weight:700;font-size:14px}
+#s1 .btn.p{background:var(--g);color:#fff}
+#s1 .btn.on{background:var(--tint)}
+#s1 .mini{font-size:13px;color:var(--sub)}
+#s1 .tag{font-size:12px;color:var(--sub)}
+#s1 .chip{font:inherit;border:2px solid var(--bd);background:var(--card);border-radius:999px;padding:6px 12px;margin:4px 4px 0 0;font-size:14px}
+#s1 .chip.on{border-color:var(--g);background:var(--tint);font-weight:700}
+#s1 .meta{border:2px dashed var(--g)}
+#s1 .meta .q{font-size:14px;margin:8px 0 0}
+#s2 main{max-width:560px;margin:0 auto;padding:20px 16px 48px}
+#s2 h1{font-size:23px;margin:8px 0}
+#s2 h2{font-size:19px;margin:4px 0 8px}
+#s2 .card{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:18px;margin:14px 0}
+#s2 .sub{color:var(--sub);font-size:14px}
+#s2 .btn{display:block;width:100%;text-align:left;background:var(--card);color:var(--tx);border:1.5px solid var(--ln);border-radius:14px;padding:14px;margin:10px 0;font:inherit;cursor:pointer}
+#s2 .on{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 12%,var(--card))}
+#s2 .go{background:var(--ac);color:#fff;border:0;text-align:center;font-weight:700}
+#s2 .go[disabled]{opacity:.4}
+#s2 .bar{height:6px;background:var(--ln);border-radius:9px;overflow:hidden;margin-bottom:12px}
+#s2 .bar i{display:block;height:100%;background:var(--ac)}
+#s2 .tip{background:color-mix(in srgb,var(--ac) 12%,var(--card));border-radius:14px;padding:12px 14px;margin:12px 0}
+#s2 .tag{font-size:13px;color:var(--sub)}
+#s2 .hero{display:flex;align-items:center;gap:12px}
+#s2 .hero svg{flex:none}
+#s2 .cat{display:flex;align-items:center;gap:14px}
+#s2 .ic{flex:none;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:28px}
+#s2 .done{margin-left:auto;font-size:13px;color:var(--sub);white-space:nowrap}
+#s2 .npc{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+#s2 .npc .ic{width:62px;height:62px;font-size:34px}
+#s2 .bub{position:relative;background:var(--card);border:1.5px solid var(--ln);border-radius:16px;padding:12px 14px;flex:1}
+#s2 .leg{display:flex;justify-content:space-between;font-size:15px;padding:4px 0;border-bottom:1px dashed var(--ln)}
+#s2 svg text{font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif}
+#s2 .fl{transform-box:fill-box;transform-origin:left center;animation:wv 1.6s ease-in-out infinite}
+@keyframes wv{0%,100%{transform:skewY(0) scaleX(1)}50%{transform:skewY(-9deg) scaleX(.85)}}
+#s2 .rv{animation:fl 1.2s linear infinite}
+@keyframes fl{to{stroke-dashoffset:-18}}
+#s2 .dr{animation:dr 28s linear infinite}
+#s2 .dr2{animation:dr 45s linear infinite;animation-delay:-12s}
+#s2 .dr3{animation:dr 18s linear infinite;animation-delay:-6s}
+@keyframes dr{from{transform:translateX(-40px)}to{transform:translateX(380px)}}
+#s2 .place{cursor:pointer;transition:filter .2s}
+#s2 .place:hover,#s2 .place:active{filter:brightness(1.12) drop-shadow(0 0 6px #fff)}
+#s2 .pop{animation:pp .35s ease-out}
+@keyframes pp{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+</style></head><body>
+<div id="hub"><h1>🧭 ぼくの たんけん</h1><p class="lead">ふたつの冒険から、すきなほうをえらんでね。<br>どちらも、正解はないよ。つかれたら、いつでもやめていいよ。</p>
+<button class="door" onclick="openA()"><span class="e" style="background:#4a9d5b33">🌱</span><span><b>どうしようかな？</b><small>場面の中で相手と会話しながら、「こうしたらどうなるかな？」をためすゲーム（80場面）</small></span></button>
+<button class="door" onclick="openB()"><span class="e" style="background:#e08a4a33">🗺</span><span><b>ぼくのちからさがし</b><small>5つのものがたりをえらんで、きみだけの「ぼくの大陸」の地図をつくる冒険</small></span></button>
+<button class="door" onclick="openC('all')"><span class="e" style="background:#e0a52633">🎴</span><span><b>カードコレクション</b><small id="cs"></small></span></button>
+<div class="note">どちらも「あなたはこのタイプ」と決めるものではありません。やり方はいろいろ。気になったことや迷ったことは、信頼できる大人（パパやママ）にも話してみてね。</div></div>
+<section id="s1" hidden><div class="back"><button onclick="hub()">🏠 えらぶ画面へ</button></div><div class="wrap" id="m1"></div></section>
+<section id="s3" hidden><div class="back"><button onclick="hub()">🏠 えらぶ画面へ</button></div><div id="m3"></div></section>
+<section id="s2" hidden><div class="back"><button onclick="hub()">🏠 えらぶ画面へ</button></div><main id="m2"></main></section>
 <script>
+window.A1=(function(){
+
 // [絵文字,題,若葉,場面,最初のせりふ,ヒント,[[1手目,相手の返事,[[2手目,その後],[2手目,その後]]]×3]]
 const S=[
 ["🗣️","話が止まらない",3,"休み時間、好きなゲームの話をしていたら、友達が時計をチラチラ見はじめた。","（友達）……","「5分で交代」と決めたり、ひと区切りで「どう思う？」と聞いたりすると、会話がキャッチボールになりやすいよ。",[
@@ -362,7 +441,7 @@ let r={};try{r=JSON.parse(localStorage.getItem("tgr")||"{}")}catch(e){}
 let cur={};
 function st(){r[si]=Object.assign({},cur);try{localStorage.setItem("tgr",JSON.stringify(r))}catch(e){}}
 const nm=x=>Array.isArray(x)?x[0]+" "+x[1]:x;
-function cb(k,arr){return arr.map((x,i)=>`<button class="chip ${cur[k]===i?"on":""}" onclick="sv('${k}',${i})">${nm(x)}</button>`).join("")}
+function cb(k,arr){return arr.map((x,i)=>`<button class="chip ${cur[k]===i?"on":""}" onclick="A1.sv('${k}',${i})">${nm(x)}</button>`).join("")}
 function R(k){
 if(k=="b")return cb("b",FE)+(cur.b!=null?`<div class="q">どのくらい？</div>${cb("bi",IN)}<div class="mini">気づけたね。どんな気もちも、あっていいんだよ。</div>`:"");
 if(k=="o")return cb("o",OF)+(cur.o!=null?`<div class="mini">人の気もちは、ほんとうは聞いてみないと分からないこともあるよ。いろいろ、ありえるね。</div>`:"");
@@ -374,60 +453,201 @@ const bf=()=>`<div class="card meta"><b>🔭 ちょっと、じぶんの心を�
 const bo=()=>`<div class="card meta"><b>🔭 相手の心は？</b><div class="mini">相手は、どんな気もちかな？ 考えてみよう。（えらばなくてもOK）</div><div id="m-o">${R("o")}</div></div>`;
 const ba=()=>`<div class="card meta"><b>🔭 ふりかえりタイム</b><div class="mini">答えはひとつじゃないよ。思ったことをえらんでね。（とばしてもOK）</div><div class="q"><b>① いまの気もちは？</b></div><div id="m-a">${R("a")}</div><div class="q"><b>② このやり方を選んだとき、どうなりたかったかな？</b></div><div id="m-w">${R("w")}</div><div class="q"><b>③ にた場面があったら、つぎはどうしたい？</b></div><div id="m-n">${R("n")}</div><div class="mini" style="margin-top:8px">ふりかえりノートに、きみだけの記録としてたまるよ。</div></div>`;
 const rks=()=>Object.keys(r).filter(i=>S[i]&&["b","o","a","w","n"].some(f=>r[i][f]!=null));
-const nbCard=()=>`<div class="card"><b>🔭 ふりかえりノート（${rks().length}）</b><div class="mini">場面ごとの「気もち」と「どうしてそうしたか」が、ここにたまるよ。</div>${rks().length?`<button class="btn" onclick="nb()">見かえす</button>`:""}</div>`;
+const nbCard=()=>`<div class="card"><b>🔭 ふりかえりノート（${rks().length}）</b><div class="mini">場面ごとの「気もち」と「どうしてそうしたか」が、ここにたまるよ。</div>${rks().length?`<button class="btn" onclick="A1.nb()">見かえす</button>`:""}</div>`;
 function nb(){const ks=rks();let mv=0,tl=[0,0,0,0,0,0];ks.forEach(i=>{const e=r[i];if(e.b!=null)tl[e.b]++;if(e.b!=null&&e.a!=null&&e.a!=e.b)mv++});
 const L=ks.map(i=>{const e=r[i],s=S[i],f=(x,a)=>x!=null?nm(a[x]):"—";const p=e.x!=null&&s[6][e.x]&&s[6][e.x][2][e.y]?`<div class="mini">やり方：${s[6][e.x][0]} → ${s[6][e.x][2][e.y][0]}</div>`:"";
-return `<div class="card"><b>${s[0]} ${s[1]}</b>${p}<div class="mini">はじめの気もち：${f(e.b,FE)}${e.bi!=null?"（"+IN[e.bi]+"）":""}<br>相手の気もち（きみの予想）：${f(e.o,OF)}<br>いまの気もち：${f(e.a,FE)}<br>どうなりたかった？：${e.w!=null?WY[e.w]:"—"}<br>つぎは：${e.n!=null?NX[e.n]:"—"}</div><button class="btn" onclick="scene(${i})">この場面へ</button></div>`}).join("");
-app.innerHTML=`<h1>🔭 ふりかえりノート</h1><div class="card">これは、きみだけのノート。点数も、正解もないよ。<div class="mini">ふりかえりした場面：${ks.length}こ　／　気もちがうごいた場面：${mv}こ</div><div class="mini">よく出てくる気もち：${FE.map((x,i)=>tl[i]?x[0]+"×"+tl[i]:"").filter(Boolean).join("　")||"まだないよ"}</div></div>${L}<details class="card"><summary style="cursor:pointer"><b>👪 おうちの人へ</b></summary><p class="mini">いっしょにノートを見ながら「このとき、どんな気もちだった？」「どうなったらいいなと思った？」と聞いてみてください。答えが出なくても、ことばにならなくても大丈夫です。話を最後まで聞くことが、自分の心を見る力（メタ認知）をはぐくみます。</p></details><button class="btn p" onclick="home()">ホームへ</button>`;scrollTo(0,0)}
-const app=document.getElementById("app");let got={};try{got=JSON.parse(localStorage.getItem("tg")||"{}")}catch(e){}let si=0,a=0,lv=0;
+return `<div class="card"><b>${s[1]}</b>${p}<div class="mini">はじめの気もち：${f(e.b,FE)}${e.bi!=null?"（"+IN[e.bi]+"）":""}<br>相手の気もち（きみの予想）：${f(e.o,OF)}<br>いまの気もち：${f(e.a,FE)}<br>どうなりたかった？：${e.w!=null?WY[e.w]:"—"}<br>つぎは：${e.n!=null?NX[e.n]:"—"}</div><button class="btn" onclick="A1.scene(${i})">この場面へ</button></div>`}).join("");
+app.innerHTML=`<h1>🔭 ふりかえりノート</h1><div class="card">これは、きみだけのノート。点数も、正解もないよ。<div class="mini">ふりかえりした場面：${ks.length}こ　／　気もちがうごいた場面：${mv}こ</div><div class="mini">よく出てくる気もち：${FE.map((x,i)=>tl[i]?x[0]+"×"+tl[i]:"").filter(Boolean).join("　")||"まだないよ"}</div></div>${L}<details class="card"><summary style="cursor:pointer"><b>👪 おうちの人へ</b></summary><p class="mini">いっしょにノートを見ながら「このとき、どんな気もちだった？」「どうなったらいいなと思った？」と聞いてみてください。答えが出なくても、ことばにならなくても大丈夫です。話を最後まで聞くことが、自分の心を見る力（メタ認知）をはぐくみます。</p></details><button class="btn p" onclick="A1.home()">ホームへ</button>`;scrollTo(0,0)}
+const app=document.getElementById("m1");let got={};try{got=JSON.parse(localStorage.getItem("tg")||"{}")}catch(e){}let si=0,a=0,lv=0;
 const lf=n=>"🌿".repeat(n);
 const cnt=i=>Object.keys(got).filter(k=>k.startsWith(i+"-")).length;
 const tot=()=>Object.keys(got).length;
 let seen={},nu=0;try{seen=JSON.parse(localStorage.getItem("tgs")||"{}")}catch(e){}
+let pk={};try{pk=JSON.parse(localStorage.getItem("tgp")||"{}")}catch(e){}
+const PL3="-msnam-m----ns-nasnm---g-m--snsna-mg-----s-g---g-gg-ss-mn-gn--g-mgnam-ga-gmans-na-n--sa-mn-nm--ngm-gsn-sansa-sa--na-s-n---mgnm-m--sa-mm-ma-ng-manmg--namn--m-a--gs-ng-mmanm-ms-ms-ag-gn-ms-msna--mg--g-gm-ag-ma-mmngm-ga-na-mm--m-am-mm-gm--m-mm";
+function tally(){const r={g:0,s:0,a:0,n:0,m:0,total:0,pn:0};for(const i in pk){const l=pk[i]||[];if(l.length)r.pn++;l.forEach(j=>{r.total++;const c=PL3[i*3+j];if(c&&c!=="-"&&r[c]!==undefined)r[c]++})}return r}
 let mk={};try{mk=JSON.parse(localStorage.getItem("tgm")||"{}")}catch(e){}
 const MKS=["🐻","🐰","🐱","🐶","🐼","🐥","👦","👧"];
-let opt={fs:0,all:0,mk:"🐻",meta:1};try{opt=Object.assign(opt,JSON.parse(localStorage.getItem("tgo")||"{}"))}catch(e){}
+let opt={fs:0,all:0,mk:"🐻",meta:0};try{opt=Object.assign(opt,JSON.parse(localStorage.getItem("tgo")||"{}"))}catch(e){}
 const started=()=>S.filter((s,i)=>seen[i]||cnt(i)).length;const STEP=2,BASE=12;const vis=()=>opt.all?S.length:Math.min(S.length,BASE+STEP*started());const avail=i=>i<vis();const open=()=>vis()>=S.length;const left=()=>S.length-vis();
 function home(){cur={};
-applyO();app.innerHTML=`<div style="text-align:right"><button class="btn" aria-label="せってい" onclick="settings()" style="padding:4px 12px;margin:0">⚙️</button></div><h1>🌱 どうしようかな？</h1><p class="lead">場面の中で、相手と会話しながら<br>「こうしたらどうなるかな？」をためすゲームだよ。<br><b>正解もまちがいもないよ。</b>どれをえらんでもだいじょうぶ。<br>つかれたら、いつでもやめていいよ。</p>
-<div>${[0,1,2,3,4,5].map(i=>`<button class="btn ${i==lv?"on":""}" onclick="lv=${i};home()">${i?lf(i):"すべて"}</button>`).join("")}</div>
-${S.map((s,i)=>(!lv||s[2]==lv)&&avail(i)?`<button class="sc" onclick="scene(${i})"><span class="em">${s[0]}</span><span><b>${s[1]}${mk["s"+i]?" "+opt.mk:""}</b><small>${lf(s[2])}　${cnt(i)}/6 のやり方をためした</small></span></button>`:"").join("")}
-${open()?`<p class="mini">🌱 つづきの場面がひらいたよ。</p>`:`<div class="card">🔒 <b>つづきの場面</b><div class="mini">あと${left()}こ、ひらいていない場面があるよ。場面をひとつためすたびに、${STEP}つずつひらくよ。</div></div>`}<div class="card"><b>${opt.mk} きになるマーク（${Object.keys(mk).length}）</b><div class="mini">あとで考えたい場面ややり方に、マークをつけられるよ。</div>${Object.keys(mk).length?`<button class="btn" onclick="marks()">見かえす</button>`:""}</div>${meta()?nbCard():""}<div class="card"><b>🌿 ヒントカード</b>${tot()?`<div class="mini">場面をさいごまで進めると、ヒントがたまるよ。</div><button class="btn" onclick="cards()">見かえす</button>`:`<div class="mini">場面をさいごまで進めると、ヒントカードがたまるよ。</div>`}</div>
-<p class="mini">※「対人関係のこまりごと ガイド」をもとにした練習用のゲームです。実際の反応は、相手や場面によってちがいます。つらいときは、信頼できる大人に話してね。（🌿は、ガイドの若葉マークだよ。🌿が多いほど、むずかしく感じることが多い場面なんだ）</p>`}
-function hd(s){return `<p class="tag">${s[0]} ${s[1]}　${lf(s[2])}</p><div class="card">${s[3]}</div>`}
+applyO();app.innerHTML=`<div style="text-align:right"><button class="btn" aria-label="せってい" onclick="A1.settings()" style="padding:4px 12px;margin:0">⚙️</button></div><h1>🌱 どうしようかな？</h1><p class="lead">場面の中で、相手と会話しながら<br>「こうしたらどうなるかな？」をためすゲームだよ。<br><b>正解もまちがいもないよ。</b>どれをえらんでもだいじょうぶ。<br>つかれたら、いつでもやめていいよ。</p>
+<div>${[0,1,2,3,4,5].map(i=>`<button class="btn ${i==lv?"on":""}" onclick="A1.setLv(${i})">${i?lf(i):"すべて"}</button>`).join("")}</div>
+${S.map((s,i)=>(!lv||s[2]==lv)&&avail(i)?`<button class="sc" onclick="A1.scene(${i})"><span class="em">${ill(i)}</span><span><b>${s[1]}${mk["s"+i]?" "+opt.mk:""}</b><small>${lf(s[2])}　${cnt(i)}/6 のやり方をためした</small></span></button>`:"").join("")}
+${open()?`<p class="mini">🌱 つづきの場面がひらいたよ。</p>`:`<div class="card">🔒 <b>つづきの場面</b><div class="mini">あと${left()}こ、ひらいていない場面があるよ。場面をひとつためすたびに、${STEP}つずつひらくよ。</div></div>`}<div class="card"><b>${opt.mk} きになるマーク（${Object.keys(mk).length}）</b><div class="mini">あとで考えたい場面ややり方に、マークをつけられるよ。</div>${Object.keys(mk).length?`<button class="btn" onclick="A1.marks()">見かえす</button>`:""}</div>${meta()?nbCard():""}<div class="card"><b>🎴 ヒントカード コレクション（${S.filter((s,i)=>cnt(i)>0).length}/${S.length}）</b>${tot()?`<div class="mini">場面をさいごまで進めると、ヒントがたまるよ。</div><button class="btn" onclick="A1.cards()">🎴 アルバムを見る</button>`:`<div class="mini">場面をさいごまで進めると、ヒントカードがたまるよ。</div>`}</div>
+<div class="card"><b>🗺 ぼくの大陸</b><div class="mini">ここで選んだやり方は、「ぼくの大陸」の地図にも出てくるよ。${tally().total?`（いま ${tally().pn} 場面ぶん）`:''}</div><button class="btn" onclick="openB();A2.res()">地図を見にいく</button></div><p class="mini">※「対人関係のこまりごと ガイド」をもとにした練習用のゲームです。実際の反応は、相手や場面によってちがいます。つらいときは、信頼できる大人に話してね。（🌿は、ガイドの若葉マークだよ。🌿が多いほど、むずかしく感じることが多い場面なんだ）</p>`}
+function hd(s){return `<p class="tag">${s[1]}　${lf(s[2])}</p>${ill(S.indexOf(s))}<div class="card" style="margin-top:10px">${s[3]}</div>`}
 function scene(i){si=i;const s=S[i];if(cur.sc!==i)cur={sc:i};else{delete cur.o;delete cur.a;delete cur.w;delete cur.n}
-app.innerHTML=hd(s)+`<div class="say">${s[4]}</div>${meta()?bf():""}<p class="mini">きみなら、どうする？</p>${s[2]>3?'<p class="mini">🏡 迷ったら、パパやママにも聞いてみてね。</p>':''}`+s[6].map((o,j)=>`<button class="ch" onclick="turn2(${j})">${o[0]}</button>`).join("")+`${mb("s"+si)}<button class="btn" onclick="home()">いまはやめておく</button>`;scrollTo(0,0)}
-function turn2(j){a=j;const s=S[si],o=s[6][j];const b0=vis();seen[si]=1;try{localStorage.setItem("tgs",JSON.stringify(seen))}catch(e){}nu=vis()-b0;
-app.innerHTML=hd(s)+`<div class="me">きみ：${o[0]}</div><div class="say">${o[1]}</div>${meta()?bo():""}<p class="mini">それを聞いて、きみは……</p>`+o[2].map((p,k)=>`<button class="ch" onclick="end(${k})">${p[0]}</button>`).join("")+`<button class="btn" onclick="scene(${si})">1つ目にもどる</button>`;scrollTo(0,0)}
-function end(k){const s=S[si],o=s[6][a],p=o[2][k];got[si+"-"+a+"-"+k]=1;cur.x=a;cur.y=k;if(meta())st();try{localStorage.setItem("tg",JSON.stringify(got))}catch(e){}
+app.innerHTML=hd(s)+`<div class="say">${s[4]}</div>${meta()?bf():""}<p class="mini">きみなら、どうする？</p>${s[2]>3?'<p class="mini">🏡 迷ったら、パパやママにも聞いてみてね。</p>':''}`+s[6].map((o,j)=>`<button class="ch" onclick="A1.turn2(${j})">${o[0]}</button>`).join("")+`${mb("s"+si)}<button class="btn" onclick="A1.home()">いまはやめておく</button>`;scrollTo(0,0)}
+function turn2(j){a=j;const s=S[si],o=s[6][j];const b0=vis();seen[si]=1;try{pk[si]=pk[si]||[];if(!pk[si].includes(j))pk[si].push(j);localStorage.setItem("tgp",JSON.stringify(pk))}catch(e){}try{localStorage.setItem("tgs",JSON.stringify(seen))}catch(e){}nu=vis()-b0;
+app.innerHTML=hd(s)+`<div class="me">きみ：${o[0]}</div><div class="say">${o[1]}</div>${meta()?bo():""}<p class="mini">それを聞いて、きみは……</p>`+o[2].map((p,k)=>`<button class="ch" onclick="A1.end(${k})">${p[0]}</button>`).join("")+`<button class="btn" onclick="A1.scene(${si})">1つ目にもどる</button>`;scrollTo(0,0)}
+function end(k){const s=S[si],o=s[6][a],p=o[2][k];const fresh=cnt(si)==0?1:0;got[si+"-"+a+"-"+k]=1;cur.x=a;cur.y=k;if(meta())st();try{localStorage.setItem("tg",JSON.stringify(got))}catch(e){}
 app.innerHTML=hd(s)+`<div class="me">きみ：${o[0]}</div><div class="say">${o[1]}</div><div class="me">きみ：${p[0]}</div>
 <div class="sec b"><h3>👀 そのあと（一例）</h3>${p[1]}<div class="mini">ほかのなりゆきになることも、もちろんあるよ。</div></div>
-<div class="sec c"><h3>🌿 ヒントカード</h3>${s[5]}</div>${s[2]>3?'<div class="sec b"><h3>🏡 迷ったときは</h3>パパやママにも聞いてみてね。きっと、いっしょに考えてくれるよ。</div>':''}${meta()?ba():""}${others(s,a,k)}
+<div class="sec c"><h3>🎴 ヒントカード</h3>${s[5]}<br><button class="btn" onclick="Cd.show('h${si}',${fresh})">🎴 カードを大きく見る</button></div>${fresh?(setTimeout(()=>Cd.show("h"+si,1),500),""):""}${s[2]>3?'<div class="sec b"><h3>🏡 迷ったときは</h3>パパやママにも聞いてみてね。きっと、いっしょに考えてくれるよ。</div>':''}${meta()?ba():""}${others(s,a,k)}
 <p class="mini">どのやり方にも、それぞれ良いところがあるよ。人によって、日によって、やり方はちがっていいんだ。</p>
-${nu>0?`<div class="mini">🎉 新しい場面が${nu}つひらいたよ。ホームで見られるよ。</div>`:""}${mb("p"+si+"-"+a+"-"+k)}<button class="btn p" onclick="scene(${si})">べつのやり方もためす</button>${si<S.length-1&&avail(si+1)?`<button class="btn" onclick="scene(${si+1})">次の場面へ</button>`:""}<button class="btn" onclick="home()">ホームへ</button>`;scrollTo(0,0)}
+${nu>0?`<div class="mini">🎉 新しい場面が${nu}つひらいたよ。ホームで見られるよ。</div>`:""}${mb("p"+si+"-"+a+"-"+k)}<button class="btn p" onclick="A1.scene(${si})">べつのやり方もためす</button>${si<S.length-1&&avail(si+1)?`<button class="btn" onclick="A1.scene(${si+1})">次の場面へ</button>`:""}<button class="btn" onclick="A1.home()">ホームへ</button>`;scrollTo(0,0)}
 function others(s,a,k){let h="";s[6].forEach((o,i)=>o[2].forEach((p,j)=>{if(i==a&&j==k)return;h+=`<div class="mini" style="margin:10px 0"><b>${o[0]}</b> → ${p[0]}<br>${p[1]}</div>`}));return `<details class="card"><summary style="cursor:pointer"><b>👥 ほかのやり方も見てみる</b></summary><p class="mini">人によって、やり方はいろいろ。どれも、自然なやり方のひとつだよ。きみのやり方も、そのひとつ。</p>${h}</details>`}
+function setLv(i){lv=i;home()}
 function applyO(){app.style.zoom=opt.fs?1.2:1}
 function saveO(){try{localStorage.setItem("tgo",JSON.stringify(opt))}catch(e){}}
 function setO(k,v){opt[k]=v;saveO();applyO();settings()}
 function settings(){applyO();app.innerHTML=`<h1>⚙️ せってい</h1>
-<div class="card"><b>文字の大きさ</b><div><button class="btn ${opt.fs?"":"on"}" onclick="setO('fs',0)">ふつう</button><button class="btn ${opt.fs?"on":""}" onclick="setO('fs',1)">大きい</button></div></div>
-<div class="card"><b>場面のひらきかた</b><div class="mini">ふだんは、場面をためすたびに少しずつひらくよ。</div><div><button class="btn ${opt.all?"":"on"}" onclick="setO('all',0)">少しずつ</button><button class="btn ${opt.all?"on":""}" onclick="setO('all',1)">ぜんぶひらく</button></div></div>
-<div class="card"><b>マークのかたち</b><div class="mini">きになるところにつけるマークをえらべるよ。</div><div>${MKS.map(m=>`<button class="btn ${opt.mk==m?"on":""}" onclick="setO('mk','${m}')" style="font-size:22px;padding:4px 12px">${m}</button>`).join("")}</div></div>
-<div class="card"><b>じぶんの心をのぞくコーナー</b><div class="mini">気もちをえらんだり、ふりかえったりするコーナーを、出す・出さないを決められるよ。</div><div><button class="btn ${opt.meta?"on":""}" onclick="setO('meta',1)">出す</button><button class="btn ${opt.meta?"":"on"}" onclick="setO('meta',0)">出さない</button></div></div>
-<div class="card"><b>マークをけす</b><div class="mini">つけたマークを、ぜんぶ消すよ（${Object.keys(mk).length}こ）。</div><div id="rm"><button class="btn" onclick="askM()">ぜんぶ消す…</button></div></div>
-<div class="card"><b>しんちょくをリセット</b><div class="mini">ためしたやり方・ヒントカード・ひらいた場面・ふりかえりノートが、はじめの状態にもどるよ。</div><div id="rs"><button class="btn" onclick="askR()">リセットする…</button></div></div>
-<button class="btn p" onclick="home()">ホームへもどる</button>`;scrollTo(0,0)}
-function askR(){document.getElementById("rs").innerHTML=`<div class="mini">ほんとうにリセットしていい？ もとにはもどせないよ。</div><button class="btn" onclick="doR()">リセットする</button><button class="btn" onclick="settings()">やめる</button>`}
-function doR(){got={};seen={};nu=0;r={};cur={};try{localStorage.removeItem("tgr");localStorage.removeItem("tg");localStorage.removeItem("tgs")}catch(e){}app.innerHTML=`<h1>⚙️ せってい</h1><div class="card">✅ リセットしたよ。</div><button class="btn p" onclick="home()">ホームへ</button>`}
+<div class="card"><b>文字の大きさ</b><div><button class="btn ${opt.fs?"":"on"}" onclick="A1.setO('fs',0)">ふつう</button><button class="btn ${opt.fs?"on":""}" onclick="A1.setO('fs',1)">大きい</button></div></div>
+<div class="card"><b>場面のひらきかた</b><div class="mini">ふだんは、場面をためすたびに少しずつひらくよ。</div><div><button class="btn ${opt.all?"":"on"}" onclick="A1.setO('all',0)">少しずつ</button><button class="btn ${opt.all?"on":""}" onclick="A1.setO('all',1)">ぜんぶひらく</button></div></div>
+<div class="card"><b>マークのかたち</b><div class="mini">きになるところにつけるマークをえらべるよ。</div><div>${MKS.map(m=>`<button class="btn ${opt.mk==m?"on":""}" onclick="A1.setO('mk','${m}')" style="font-size:22px;padding:4px 12px">${m}</button>`).join("")}</div></div>
+<div class="card"><b>じぶんの心をのぞくコーナー</b><div class="mini">気もちをえらんだり、ふりかえったりするコーナーを、出す・出さないを決められるよ。</div><div><button class="btn ${opt.meta?"on":""}" onclick="A1.setO('meta',1)">出す</button><button class="btn ${opt.meta?"":"on"}" onclick="A1.setO('meta',0)">出さない</button></div></div>
+<div class="card"><b>マークをけす</b><div class="mini">つけたマークを、ぜんぶ消すよ（${Object.keys(mk).length}こ）。</div><div id="rm"><button class="btn" onclick="A1.askM()">ぜんぶ消す…</button></div></div>
+<div class="card"><b>しんちょくをリセット</b><div class="mini">ためしたやり方・ヒントカード・ひらいた場面・ふりかえりノートが、はじめの状態にもどるよ。</div><div id="rs"><button class="btn" onclick="A1.askR()">リセットする…</button></div></div>
+<button class="btn p" onclick="A1.home()">ホームへもどる</button>`;scrollTo(0,0)}
+function askR(){document.getElementById("rs").innerHTML=`<div class="mini">ほんとうにリセットしていい？ もとにはもどせないよ。</div><button class="btn" onclick="A1.doR()">リセットする</button><button class="btn" onclick="A1.settings()">やめる</button>`}
+function doR(){got={};seen={};pk={};nu=0;r={};cur={};try{localStorage.removeItem("tgp");localStorage.removeItem("tgr");localStorage.removeItem("tg");localStorage.removeItem("tgs")}catch(e){}app.innerHTML=`<h1>⚙️ せってい</h1><div class="card">✅ リセットしたよ。</div><button class="btn p" onclick="A1.home()">ホームへ</button>`}
 function saveM(){try{localStorage.setItem("tgm",JSON.stringify(mk))}catch(e){}}
 function mkLabel(k){return k[0]=="s"?(mk[k]?`${opt.mk} この場面にマークすみ（もう一度ではずす）`:`${opt.mk} この場面にマーク`):(mk[k]?`${opt.mk} このやり方にマークすみ（もう一度ではずす）`:`${opt.mk} このやり方にマーク`)}
-function mb(k){return `<button class="btn ${mk[k]?"on":""}" onclick="tm('${k}',this)">${mkLabel(k)}</button>`}
+function mb(k){return `<button class="btn ${mk[k]?"on":""}" onclick="A1.tm('${k}',this)">${mkLabel(k)}</button>`}
 function tm(k,b){if(mk[k])delete mk[k];else mk[k]=1;saveM();b.classList.toggle("on",!!mk[k]);b.textContent=mkLabel(k)}
 function rmk(k){delete mk[k];saveM();marks()}
-function marks(){const ks=Object.keys(mk);let sc="",ph="";ks.forEach(k=>{const bt=`<button class="btn" onclick="scene(${k[0]=="s"?k.slice(1):k.slice(1).split("-")[0]})">この場面へ</button><button class="btn" onclick="rmk('${k}')">マークをはずす</button>`;if(k[0]=="s"){const s=S[+k.slice(1)];if(s)sc+=`<div class="card"><b>${opt.mk} ${s[0]} ${s[1]}</b> <span class="tag">${lf(s[2])}</span><div class="mini">${s[3]}</div>${bt}</div>`}else{const [i,x,y]=k.slice(1).split("-").map(Number),s=S[i],o=s&&s[6][x],p=o&&o[2][y];if(p)ph+=`<div class="card"><b>${opt.mk} ${s[0]} ${s[1]}</b><div class="mini">${o[0]} → ${p[0]}</div><div class="mini">${p[1]}</div>${bt}</div>`}});app.innerHTML=`<h1>${opt.mk} きになるマーク</h1>`+(sc||ph?(sc?`<h3>場面</h3>${sc}`:"")+(ph?`<h3>やり方</h3>${ph}`:""):`<div class="card">まだマークがないよ。</div>`)+`<button class="btn p" onclick="home()">ホームへ</button>`;scrollTo(0,0)}
-function askM(){document.getElementById("rm").innerHTML=`<div class="mini">ほんとうにけしていい？ もとにはもどせないよ。</div><button class="btn" onclick="doM()">けす</button><button class="btn" onclick="settings()">やめる</button>`}
+function marks(){const ks=Object.keys(mk);let sc="",ph="";ks.forEach(k=>{const bt=`<button class="btn" onclick="A1.scene(${k[0]=="s"?k.slice(1):k.slice(1).split("-")[0]})">この場面へ</button><button class="btn" onclick="A1.rmk('${k}')">マークをはずす</button>`;if(k[0]=="s"){const s=S[+k.slice(1)];if(s)sc+=`<div class="card"><b>${opt.mk} ${s[1]}</b> <span class="tag">${lf(s[2])}</span><div class="mini">${s[3]}</div>${bt}</div>`}else{const [i,x,y]=k.slice(1).split("-").map(Number),s=S[i],o=s&&s[6][x],p=o&&o[2][y];if(p)ph+=`<div class="card"><b>${opt.mk} ${s[1]}</b><div class="mini">${o[0]} → ${p[0]}</div><div class="mini">${p[1]}</div>${bt}</div>`}});app.innerHTML=`<h1>${opt.mk} きになるマーク</h1>`+(sc||ph?(sc?`<h3>場面</h3>${sc}`:"")+(ph?`<h3>やり方</h3>${ph}`:""):`<div class="card">まだマークがないよ。</div>`)+`<button class="btn p" onclick="A1.home()">ホームへ</button>`;scrollTo(0,0)}
+function askM(){document.getElementById("rm").innerHTML=`<div class="mini">ほんとうにけしていい？ もとにはもどせないよ。</div><button class="btn" onclick="A1.doM()">けす</button><button class="btn" onclick="A1.settings()">やめる</button>`}
 function doM(){mk={};saveM();settings()}
-function cards(){
-app.innerHTML=`<h1>🌿 ヒントカード</h1>`+S.map((s,i)=>cnt(i)?`<div class="card"><span class="tag">${s[0]} ${s[1]}　${lf(s[2])}</span><div style="margin-top:4px">${s[5]}</div></div>`:"").join("")+`<button class="btn" onclick="home()">ホームへ</button>`}
-home();
+function cards(){openC("h");return;
+app.innerHTML=`<h1>🌿 ヒントカード</h1>`+S.map((s,i)=>cnt(i)?`<div class="card"><span class="tag">${s[1]}　${lf(s[2])}</span><div style="margin-top:4px">${s[5]}</div></div>`:"").join("")+`<button class="btn" onclick="A1.home()">ホームへ</button>`}
+
+const IL="cfng yasn yfsn cfuc cfsn yfna yfdn hfsp hfnt cfnw yfsk hfsd cfss cfsk cfss cfsg cfnn cfnn ctnn casf cfsw cfsh cass cfsg hmsn csne yfsn cfuw hfsg cfdw yasm hfsn hfsg ctsn cfse cfsk cfnb ctnw ysss cfse cfsf cfsh yfsa yfsn cfdg cfnb yasn ytnn casn cfss hfng ctnn yfun cfsw cfgn nsdr yfgn yfdn hmdf cfnw yfnn yfdn yfss yfse cfse ctss ctnn yfgn hfsg cfnh yaun ctnn cfnn nsdr yfnh yash yfsn ctnn hfnh cfnn".split(" ");
+const IC={c:["#fdf1d6","#d9b98a"],y:["#cfeaff","#9bd37f"],h:["#ffe9e1","#e7c9a5"],n:["#b8c4d4","#8e9aab"]};
+const HR=["#6b4423","#222","#c9822b","#8b5a2b"],SH=["#f2994a","#9b7ede","#56c596","#ef6f8d","#f2c94c"];
+function face(x,y,m){const e=`<circle cx="${x-5}" cy="${y-2}" r="1.8" fill="#333"/><circle cx="${x+5}" cy="${y-2}" r="1.8" fill="#333"/>`,st='stroke="#333" fill="none" stroke-width="1.6" stroke-linecap="round"';
+const M={s:`<path d="M${x-5} ${y+4}q5 5 10 0" ${st}/>`,n:`<path d="M${x-4} ${y+6}h8" ${st}/>`,d:`<path d="M${x-5} ${y+8}q5-5 10 0" ${st}/><path d="M${x+8} ${y}q2 4 0 6q-2-2 0-6z" fill="#7cc4ff"/>`,g:`<path d="M${x-8} ${y-8}l6 3M${x+8} ${y-8}l-6 3M${x-4} ${y+7}h8" ${st}/>`,u:`<ellipse cx="${x}" cy="${y+6}" rx="2.5" ry="3.2" fill="#333"/>`};return e+M[m]}
+function kid(x,y,sc,hair,shirt,m,t){const k="#ffe0c2",f=y+52;return `<g transform="translate(${x} ${f}) scale(${sc}) translate(${-x} ${-f})"><rect x="${x-13}" y="${y+14}" width="26" height="30" rx="10" fill="${shirt}"/><rect x="${x-9}" y="${y+42}" width="7" height="10" rx="3" fill="#556"/><rect x="${x+2}" y="${y+42}" width="7" height="10" rx="3" fill="#556"/><circle cx="${x-15}" cy="${y+30}" r="4.5" fill="${k}"/><circle cx="${x+15}" cy="${y+30}" r="4.5" fill="${k}"/><circle cx="${x}" cy="${y}" r="17" fill="${k}"/><path d="M${x-18} ${y-2}a18 18 0 0 1 36 0q-9-9-18-6q-9-3-18 6z" fill="${hair}"/>${t=="m"?`<circle cx="${x}" cy="${y-19}" r="6" fill="${hair}"/>`:""}${t=="t"?`<g fill="none" stroke="#333" stroke-width="1.3"><circle cx="${x-6}" cy="${y-2}" r="5"/><circle cx="${x+6}" cy="${y-2}" r="5"/></g>`:""}${face(x,y,m)}</g>`}
+function bgd(b){const[w,f]=IC[b];let s=`<rect width="200" height="150" fill="${w}"/><rect y="118" width="200" height="32" fill="${f}"/>`;
+if(b=="c")s+=`<rect x="14" y="14" width="52" height="34" rx="3" fill="#bfe6ff" stroke="#fff" stroke-width="3"/><path d="M40 14v34M14 31h52" stroke="#fff" stroke-width="2"/><rect x="104" y="14" width="80" height="40" rx="3" fill="#4f8a6a" stroke="#b98b5a" stroke-width="3"/>`;
+if(b=="y")s+=`<circle cx="170" cy="28" r="14" fill="#ffd95a"/><ellipse cx="60" cy="26" rx="22" ry="8" fill="#fff"/><ellipse cx="76" cy="22" rx="14" ry="7" fill="#fff"/><rect x="10" y="62" width="6" height="56" fill="#9a6b3f"/><circle cx="13" cy="56" r="20" fill="#5fb36a"/>`;
+if(b=="h")s+=`<rect x="20" y="18" width="40" height="30" rx="3" fill="#fff" stroke="#e0a07a" stroke-width="3"/><path d="M24 44l12-14 8 8 6-6 8 12z" fill="#8fd18b"/><rect x="140" y="12" width="44" height="46" rx="3" fill="#ffd9a8"/><circle cx="162" cy="35" r="12" fill="#fff6d6"/>`;
+if(b=="n"){s+=`<path d="M0 0h200v40q-30 14-60 0t-70 4q-35 8-70-4z" fill="#8e9aab"/>`;for(let i=0;i<14;i++)s+=`<path d="M${10+i*14} ${50+(i*17)%40}l-3 10" stroke="#7fb4e8" stroke-width="2" stroke-linecap="round"/>`}return s}
+function prop(p,x,y){const Q={g:`<rect x="-20" y="-11" width="40" height="22" rx="10" fill="#4a5568"/><path d="M-12 0h8M-8-4v8" stroke="#fff" stroke-width="2.5"/><circle cx="9" cy="-3" r="3" fill="#f66"/><circle cx="14" cy="3" r="3" fill="#6cf"/>`,b:`<rect x="-16" y="-12" width="32" height="24" rx="3" fill="#e5655e"/><rect x="-13" y="-9" width="26" height="18" fill="#fff"/><path d="M0-9v18" stroke="#ccc"/>`,p:`<rect x="-14" y="-8" width="28" height="22" rx="3" fill="#f58fb1"/><path d="M0-8v22M-14 2h28" stroke="#fff" stroke-width="3"/><path d="M0-8q-10-12-12-2t12 2q10-12 12-2t-12 2" fill="none" stroke="#f58fb1" stroke-width="3"/>`,c:`<path d="M-9-10h18l-3 22h-12z" fill="#7cd0ee"/><ellipse cx="3" cy="16" rx="18" ry="4" fill="#9fdcf3"/>`,k:`<circle r="14" fill="#fff" stroke="#e0a526" stroke-width="3"/><path d="M0-8V0l6 4" stroke="#333" stroke-width="2" fill="none"/>`,t:`<path d="M-11-14h22v8q0 12-11 14q-11-2-11-14z" fill="#f2c94c"/><rect x="-3" y="8" width="6" height="8" fill="#e0a526"/><rect x="-10" y="16" width="20" height="4" rx="2" fill="#c68a14"/>`,m:`<rect x="-17" y="-10" width="34" height="22" rx="5" fill="#556"/><circle r="8" fill="#9dd" stroke="#333" stroke-width="2"/>`,d:`<rect x="-12" y="-12" width="24" height="24" rx="5" fill="#fff" stroke="#999"/><circle cx="-5" cy="-5" r="2"/><circle cx="5" cy="5" r="2"/><circle r="2"/>`,a:`<path d="M-8-10q8-10 16 0" stroke="#8a5a2b" stroke-width="3" fill="none"/><rect x="-14" y="-8" width="28" height="24" rx="6" fill="#c98b4e"/>`,h:`<path d="M0 12C-20-2-12-16 0-6 12-16 20-2 0 12z" fill="#ef5d73"/>`,w:`<rect x="-14" y="-14" width="28" height="28" rx="2" fill="#fff" stroke="#ccc"/><path d="M-9-6h18M-9 0h18M-9 6h12" stroke="#7ba" stroke-width="2"/>`,s:`<path d="M0-14l4 9 10 1-8 7 3 10-9-6-9 6 3-10-8-7 10-1z" fill="#ffd34d" stroke="#e0a526"/>`,f:`<circle r="12" fill="#d9a066"/><circle cx="-4" cy="-3" r="1.8" fill="#6b4423"/><circle cx="4" cy="2" r="1.8" fill="#6b4423"/><circle cx="-2" cy="6" r="1.8" fill="#6b4423"/>`,e:`<circle cx="-8" cy="-9" r="5" fill="#b9825a"/><circle cx="8" cy="-9" r="5" fill="#b9825a"/><circle r="12" fill="#c98f63"/><circle cx="-4" cy="-2" r="1.6"/><circle cx="4" cy="-2" r="1.6"/><ellipse cy="4" rx="4" ry="3" fill="#f3d3b2"/>`};return Q[p]?`<g transform="translate(${x} ${y})">${Q[p]}</g>`:""}
+function ill(i){const[b,pt,m,p]=IL[i],Y=60;let g=bgd(b);
+g+=kid(50,Y,1,"#4a3320","#5aa9e6",b=="n"?"d":"s");
+if(pt=="f")g+=kid(148,Y,1,HR[i%4],SH[i%5],m);else if(pt=="t")g+=kid(148,Y,1,"#8a8a8a","#3a8a6a",m,"t");else if(pt=="m")g+=kid(148,Y,1,"#6b4423","#f48fb1",m,"m");
+else if(pt=="a")g+=kid(112,Y+6,.82,HR[i%4],SH[i%5],"s")+kid(146,Y+6,.82,HR[(i+1)%4],SH[(i+2)%5],"s")+kid(180,Y+6,.82,HR[(i+2)%4],SH[(i+4)%5],"s");
+else g+=`<circle cx="78" cy="34" r="3" fill="#fff"/><circle cx="88" cy="26" r="5" fill="#fff"/><ellipse cx="112" cy="16" rx="24" ry="12" fill="#fff"/><text x="112" y="21" text-anchor="middle" font-size="14" fill="#889">…</text>`;
+g+=prop(p,pt=="a"?82:100,pt=="a"?118:104);
+return `<svg viewBox="0 0 200 150" role="img" aria-label="${S[i][1]}のイラスト" style="width:100%;height:auto;display:block;border-radius:14px">${g}</svg>`}
+function hintCards(){return S.map((s,i)=>({id:"h"+i,e:ill(i),t:s[1],x:s[5],lv:s[2],own:cnt(i)>0}))}
+return {home,scene,turn2,end,tm,rmk,marks,askR,doR,askM,doM,setO,cards,settings,setLv,tally,sv,nb,hintCards,ill};})();
+window.A2=(function(){
+
+const M=(s=84)=>`<svg width="${s}" height="${s}" viewBox="0 0 100 100"><circle cx="50" cy="54" r="34" fill="#ffe0c2"/><path d="M16 50C18 18 82 18 84 50 70 38 30 38 16 50z" fill="#4a3a30"/><circle cx="39" cy="58" r="4.5" fill="#3a3430"/><circle cx="61" cy="58" r="4.5" fill="#3a3430"/><circle cx="31" cy="67" r="5" fill="#ff9d8a" opacity=".55"/><circle cx="69" cy="67" r="5" fill="#ff9d8a" opacity=".55"/><path d="M43 70q7 6 14 0" stroke="#3a3430" fill="none" stroke-width="3" stroke-linecap="round"/><rect x="62" y="82" width="30" height="16" rx="3" fill="#6a8fd0"/><text x="77" y="94" font-size="10" fill="#fff" text-anchor="middle">&lt;/&gt;</text></svg>`;
+const K=["g","s","a","n","m"];
+const P={
+g:{e:"🔭",n:"「なぜ？」を深くしらべる力",l:"ふかぼり山",c:"#e0a526",d:"なっとくできる理由があると、ぐんと力が出ます。しらべたり考えたりするのが得意で、まわりのこともよく感じとれます。",t:["かんたんすぎる時は「もっと先」をしらべてみる","「どうして？」は大切な質問。聞いていいんだよ"]},
+s:{e:"🧩",n:"見通しとルールで力が出る",l:"ルールの城",c:"#4a9a8a",d:"じゅんばんや予定がわかると、安心して力を出せます。きまりを守るまじめさや、ていねいさがあります。",t:["やることを紙や絵にして、見えるところに置く","わからない言葉は「どういう意味？」と聞く"]},
+a:{e:"⚡",n:"ひらめきと切りかえの早さ",l:"ひらめきの町",c:"#6a8fd0",d:"アイデアがぽんぽん浮かび、気持ちの切りかえも早いです。元気で、行動力があります。",t:["思いついたことはメモにすぐ書く","タイマーやカードを味方にして、はじめの一歩を作る"]},
+n:{e:"🐢",n:"ゆっくり確かめる力",l:"ゆっくりの森",c:"#8a7ac0",d:"じっくり考えて、ていねいに進められます。かんたんに流されず、まわりをよく見ています。",t:["時間がほしい時は「ちょっと待ってね」と言っていい","準備の時間を先に作ると、もっと力が出る"]},
+m:{e:"🌤",n:"その日のようすに合わせる力",l:"ようすの島",c:"#d0788a",d:"体の調子や気分、まわりの人にあわせて動けます。その日の自分に気づけるのは、大切な力です。",t:["「今日の自分は元気？」を一日一回、自分にきく","つかれた日は、ゆっくりする日と決めていい"]}};
+const CAT=[["🏫","学校","#6a8fd0"],["🎮","ゲームづくり","#e0a526"],["👫","友だち","#d0788a"],["🏠","おうち","#4a9a8a"],["🌤","自分の気もち","#8a7ac0"]];
+// [カテゴリ, ものがたり名, くふう, [[絵, ばめん, [g,s,a,n,m]]x4]]
+const ST=[
+[0,"発表の日","発表のあとは、うまくいったところを一つ見つけよう。",[
+["🏫","先生「今日は、自分で作ったゲームの発表だね」",["仕組みをたくさん話したい","話す順番を紙に書いておく","話すことが浮かんで止まらない","ゆっくり準備して臨みたい","今日の調子しだいだなと思う"]],
+["❓","友だち「それ、どうやって動いてるの？」",["くわしく説明したくなる","準備した順に答えたい","質問を聞きながらアイデアが出る","考えてから答えたい","元気だとすらすら答えられる"]],
+["⏰","先生「あと1分です」",["もっと話したいのをがまんする","時間を見て合わせる","急いで大事なところだけ話す","ゆっくりまとめに入る","あせってしまう日もある"]],
+["🎉","友だち「おもしろかった！」",["もっと知りたい気持ちが出る","どう返そうか考える","うれしくて次を作りたくなる","じんわりうれしい","気分でうれしさがちがう"]]]],
+[1,"バグ大さくせん","バグはヒント。直す順番をメモすると見つけやすい。",[
+["💻","画面がまっしろ。ゲームが動かない…",["原因をとことんつきとめたい","手順どおりに確かめたい","思いついた直し方をすぐ試す","コードを落ち着いて読む","調子のいい日なら見つかりそう"]],
+["🐛","直したのに、べつのバグが出てきた",["なぜ起きたか考えたくなる","直す順番を決め直したい","切りかえて、つぎの直し方へ","一度手を止めて休みたい","つかれると気持ちがゆれる"]],
+["🤝","友だち「ぼくにも教えて」",["しくみから説明したくなる","手順書を作って見せたい","いっしょにやりながら教えたい","ゆっくり順に教えたい","気分がいいと教えやすい"]],
+["✨","ゲームが完成した！",["もっと深いしくみを足したい","説明書を作って終わりたい","もう次のゲームを作りたい","完成をゆっくり味わいたい","今日の気分で次が決まる"]]]],
+[2,"ゲーム対戦の日","入るときの言葉と、泣いている子への言葉を持っておこう。",[
+["🎈","友だちがゲームで遊んでいる。入ろうかな",["話が合う子なら入りたい","「入れて」の言い方を考える","楽しそうで飛びこみたい","少し見てから入りたい","入りたい日とそうでない日がある"]],
+["🎮","友だち「そのルールはおかしいよ」",["理由を聞いてなっとくしたい","先にルールを決めておきたい","その場の勢いで言いたくなる","少し考えてから言う","気分で言い方が変わる"]],
+["💧","負けた友だちが、泣き出した",["気になってずっと考える","何と言うか迷う","気づくけど気がそれる","そっと近くにいる","声をかけられる日とそうでない日がある"]],
+["💬","話題がゲームから、べつの話にかわった",["深く話せる話題にもどしたい","自分の番を待ちたい","新しい話もおもしろい","聞きながらゆっくりついていく","ついていける日といけない日がある"]]]],
+[3,"ゲームのやくそく","合図やおき場所の絵があると、気持ちよく動けるよ。",[
+["🌅","朝。学校に行くしたくの時間",["考えごとで手が止まる","いつもの順番だとスムーズ","気づくと別のことをしている","ゆっくり進めたい","ねむい日は進まない"]],
+["🍚","「ごはんだよー」。ちょうどゲームづくりの途中",["キリのいいところまで考えたい","区切りまで続けたい","あれもこれもやりたくなる","急がされると困る","夢中になれる日とそうでない日がある"]],
+["⏳","お母さん「ゲームの時間はおしまいね」",["理由があれば納得する","約束の時間とわかっていれば終われる","あと少しとのばしたくなる","次の準備をゆっくりしたい","つかれていると終わりにしやすい"]],
+["🧹","「おへやをかたづけてね」",["整理のしかたを考えたくなる","場所が決まっていれば片づけやすい","途中で別のことを始める","ひとつずつゆっくりやる","元気な日はサッとできる"]]]],
+[4,"くたくたの日","気持ちは、言葉にすると軽くなるよ。「くやしい」「つかれた」",[
+["🌧","今日は思うようにいかない日",["どうしてか考え続ける","いつもと違うと気持ちがゆれる","切りかえは早い","ひとりでゆっくりしたい","体調や気分で落ちこみ方が変わる"]],
+["🌟","先生「すごいね」とほめられた",["もっと知りたくなる","どう返すか迷う","うれしくてすぐ次をやりたい","じんわりうれしい","その日の気分でうれしさがちがう"]],
+["😴","夜。つかれて、ねむい",["頭の中で考え続けてしまう","いつもの休み方で落ち着く","じっとしているのが苦手","静かに過ごしたい","体のようすがすぐ気持ちに出る"]],
+["🚀","新しいプログラミング言語に挑戦してみる？",["わくわくして深く調べたい","やり方を知ってから始めたい","とりあえず試してみたい","様子をみてから始めたい","元気な日に挑戦したくなる"]]]]];
+const app=document.getElementById('m2');let done,sc,sel,si,ti;
+const sh=a=>{a=a.slice();for(let j=a.length-1;j>0;j--){const k=Math.random()*(j+1)|0;[a[j],a[k]]=[a[k],a[j]]}return a};
+function init(){done=ST.map(()=>[0,0,0,0]);sc={g:0,s:0,a:0,n:0,m:0};intro()}
+function intro(){app.innerHTML=`<div class="hero">${M(96)}<h1>ぼくのちからさがし</h1></div>
+<p>ゲームを作るのが大すきな「ぼく」の冒険。5つのものがたりで、ぼくになったつもりで選んでね。最後に、きみだけの大陸の地図ができるよ。いくつ選んでも、ひとつも選ばなくてもOK。</p>
+<div class="card"><b>はじめに</b><p class="sub" style="margin:6px 0 0">これは「あなたはこのタイプ」と決めるものではありません。名前（ラベル）がついていても、ついていなくても、人はひとつの言葉におさまりきりません。人はひとりひとりちがっていて、だからおもしろい。自分のいろんな「ちから」に気づいて、友だちや学校での毎日を、自分らしく進むヒントにするための冒険です。正解はないよ。</p></div>
+<button class="btn go" onclick="A2.menu()">冒険にでる</button>`}
+const cnt=i=>done[i].filter(x=>x).length;
+function menu(){const tot=done.flat().filter(x=>x).length+A1.tally().total;
+app.innerHTML=`<div class="hero">${M(64)}<div><h2>どのものがたりに行く？</h2><div class="sub">1つのものがたりは4ターン。順番は自由</div></div></div>`+
+ST.map((s,i)=>`<button class="btn cat" onclick="A2.turn(${i},0)"><span class="ic" style="background:${CAT[s[0]][2]}33">${CAT[s[0]][0]}</span><span><b>${s[1]}</b><br><span class="sub">${CAT[s[0]][1]}のものがたり</span></span><span class="done">${cnt(i)>=4?'✔ クリア':cnt(i)+' / 4'}</span></button>`).join('')+
+`<button class="btn go" ${tot?'':'disabled'} onclick="A2.res()" style="margin-top:18px">🗺 ぼくの大陸を見る</button><button class="btn" onclick="openA()">🌱 「どうしようかな？」にもどる</button><p class="sub">ぜんぶ終わっていなくても、いつでも見られるよ。「どうしようかな？」で選んだやり方も、大陸に入るよ。</p>`}
+function turn(i,t){si=i;ti=t;const s=ST[i],c=CAT[s[0]],q=s[3][t];sel=new Set();
+app.innerHTML=`<div class="bar"><i style="width:${t/4*100}%"></i></div><div class="tag">${s[1]}　ターン ${t+1} / 4</div>
+<div class="npc"><span class="ic" style="background:${c[2]}33">${q[0]}</span><div class="bub">${q[1]}</div></div>
+<div class="hero" style="margin:6px 0">${M(44)}<b>ぼくは、どうする？</b></div><p class="sub" style="margin:0">あてはまるものを、いくつでも</p><div id="o">`+sh([0,1,2,3,4]).map(x=>`<button class="btn" data-k="${x}">${q[2][x]}</button>`).join('')+`</div><button class="btn go" id="ok">決めた</button>`;
+document.querySelectorAll('#o .btn').forEach(b=>b.onclick=()=>{const x=+b.dataset.k;sel.has(x)?sel.delete(x):sel.add(x);b.classList.toggle('on')});
+document.getElementById('ok').onclick=ok}
+function ok(){if(!done[si][ti]){done[si][ti]=1;sel.forEach(x=>sc[K[x]]++)}
+if(ti<3)return turn(si,ti+1);const s=ST[si];
+app.innerHTML=`<div class="bar"><i style="width:100%"></i></div><h2>🎉 「${s[1]}」クリア！</h2><p>どう選んでも、そのままで大丈夫。人によって、日によって、ちがっていいんだ。</p><div class="tip"><div class="hero">${M(48)}<div><b>💡 ひとつのくふう</b><br>${s[2]}</div></div></div><button class="btn go" onclick="A2.menu()">📍 ものがたりをえらぶ</button>`}
+function map(n){const f=k=>{const r=sc[k]/n;return{z:.8+.6*r,f:Math.min(3,1+Math.floor(r*4)),c:P[k].c}};
+const flag=(x,y,o,c)=>{let h='';for(let i=0;i<o;i++)h+=`<line x1="${x+i*9}" y1="${y}" x2="${x+i*9}" y2="${y-22}" stroke="#6b4a2f" stroke-width="2"/><path class="fl" d="M${x+i*9} ${y-22}l14 5-14 5z" fill="${c}"/>`;return h};
+const G=f('g'),S=f('s'),A=f('a'),N=f('n'),Mm=f('m');
+const lab=(x,y,k)=>`<text x="${x}" y="${y}" font-size="12" font-weight="700" text-anchor="middle" fill="#4a3a30">${P[k].l}</text><text x="${x}" y="${y+14}" font-size="11" text-anchor="middle" fill="#6b5a4a">${sc[k]}</text>`;
+return `<svg viewBox="0 0 360 440" width="100%" style="border-radius:18px;display:block"><rect width="360" height="440" fill="#bfe3f2"/>
+<g fill="none" stroke="#fff" stroke-width="2" opacity=".7"><path d="M12 40q8-6 16 0t16 0"/><path d="M300 30q8-6 16 0t16 0"/><path d="M20 400q8-6 16 0t16 0"/><path d="M150 425q8-6 16 0t16 0"/></g>
+<path d="M60 90C80 40 200 30 290 70c50 30 50 110 30 170-10 60-50 100-110 110-70 8-150-10-170-80C20 220 40 140 60 90z" fill="#f2e3b8" stroke="#d8c48a" stroke-width="3"/>
+<path d="M60 130C110 120 130 160 170 200s40 90 40 150" fill="none" stroke="#7fc4e8" stroke-width="7" stroke-linecap="round"/><path class="rv" d="M60 130C110 120 130 160 170 200s40 90 40 150" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="10 8" opacity=".8"/>
+<g class="place" onclick="A2.visit('g')" transform="translate(90 125) scale(${G.z})"><path d="M-30 20L-10-18 10 20zM-5 20L18-30 40 20z" fill="#9a8a7a"/><path d="M-14-10l4-8 4 8zM13-14l5-16 5 16z" fill="#fff"/><g transform="translate(40 20)">${flag(0,0,G.f,G.c)}</g></g>${lab(90,160,'g')}
+<g class="place" onclick="A2.visit('s')" transform="translate(255 115) scale(${S.z})"><rect x="-22" y="-12" width="44" height="32" fill="#d9c9b0"/><rect x="-28" y="-26" width="14" height="46" fill="#c9b79a"/><rect x="14" y="-26" width="14" height="46" fill="#c9b79a"/><path d="M-30-26l9-14 9 14zM12-26l9-14 9 14z" fill="#c0584a"/><rect x="-5" y="2" width="10" height="18" rx="5" fill="#7a5a3a"/><g transform="translate(-3 -40)">${flag(0,0,S.f,S.c)}</g></g>${lab(255,160,'s')}
+<g class="place" onclick="A2.visit('a')" transform="translate(105 270) scale(${A.z})"><rect x="-30" y="-8" width="20" height="22" fill="#f4d6c0"/><path d="M-33-8l13-14 13 14z" fill="#e07a5a"/><rect x="-5" y="-14" width="22" height="28" fill="#f4ecc0"/><path d="M-8-14l14-16 14 16z" fill="#6a8fd0"/><rect x="20" y="-2" width="18" height="16" fill="#f4d6c0"/><path d="M17-2l12-12 12 12z" fill="#e0a526"/><g transform="translate(-30 -16)">${flag(0,0,A.f,A.c)}</g></g>${lab(105,305,'a')}
+<g class="place" onclick="A2.visit('n')" transform="translate(262 275) scale(${N.z})"><circle cx="-20" cy="0" r="14" fill="#5a9a5a"/><circle cx="2" cy="-8" r="17" fill="#4a8a4a"/><circle cx="24" cy="2" r="13" fill="#5a9a5a"/><rect x="-1" y="6" width="4" height="14" fill="#6b4a2f"/><g transform="translate(30 12)">${flag(0,0,N.f,N.c)}</g></g>${lab(262,308,'n')}
+<g class="place" onclick="A2.visit('m')" transform="translate(300 385) scale(${Mm.z})"><ellipse cx="0" cy="8" rx="38" ry="14" fill="#f2e3b8" stroke="#d8c48a" stroke-width="2"/><rect x="-5" y="-22" width="10" height="28" fill="#fff" stroke="#c0584a"/><path d="M-6-22l6-10 6 10z" fill="#c0584a"/><g transform="translate(14 8)">${flag(0,0,Mm.f,Mm.c)}</g></g>${lab(300,425,'m')}
+<text class="dr2" x="0" y="62" font-size="26">☁️</text><text class="dr3" x="0" y="48" font-size="16">🐦</text><text class="dr" x="0" y="410" font-size="24">⛵</text><text x="180" y="22" font-size="14" font-weight="700" text-anchor="middle" fill="#3a5a6a">ぼくの大陸</text></svg>`}
+function res(){vis=new Set();const tl=A1.tally(),bs={...sc};K.forEach(k=>sc[k]+=tl[k]);const n=done.flat().filter(x=>x).length+tl.total,ks=K.slice().sort((a,b)=>sc[b]-sc[a]),tops=ks.slice(0,2);
+let h=`<div class="hero">${M(64)}<h1>ぼくの大陸</h1></div><p class="sub">${n}ターン分の冒険から、いまのきみの<b>傾向</b>を地図にしました。旗が多いところは、よく出たちから。大きい・小さいに良い悪いはありません。${tl.total?`<br>🌱 「どうしようかな？」で選んだやり方（${tl.pn}場面ぶん）も入っているよ。`:''}</p>`+map(n)+`<button class="btn" onclick="openA()">🌱 「どうしようかな？」にもどる</button><p class="sub" id="vc" style="text-align:center">👆 場所をタップして、たんけんしよう（0 / 5）</p><div id="dlg"></div><div class="card"><b>🚩 旗の数（点数や順位じゃないよ）</b>`+ks.map(k=>`<div class="leg"><span>${P[k].e} ${P[k].l}（${P[k].n}）</span><b>${sc[k]}</b></div>`).join('')+`</div>`;
+h+=`<h2 style="margin-top:20px">✨ 旗が多かった場所</h2><p class="sub">今回、たまたま多く出た場所だよ。日によって、場面によって、かわるよ。</p>`;tops.forEach(k=>{const p=P[k];h+=`<div class="card">${tip(k)}<h2>${p.l}</h2><p>${p.d}</p><b>ためしてみよう</b><ul style="padding-left:20px;margin:6px 0">${p.t.map(x=>`<li>${x}</li>`).join('')}</ul></div>`});
+h+=`<div class="card"><h2>🌈 十人十色。ちがうから、おもしろい</h2><p>この地図は「きみはこのタイプ」と決めるものじゃないよ。いま、どんなところに旗が立ちやすいか、という<b>傾向</b>を見ただけ。人の大陸は、ひとりひとり形もちがえば、旗の数もちがう。だから、友だちと話すのがおもしろいんだ。</p><p>5つの場所は、ぜんぶきみの中にあるよ。学校や友だちとのやりとりで、「自分らしくいられるやり方」と「相手に合わせるやり方」を使い分けられたら、きっと心強いね。</p><h3>👣 つぎの一歩</h3><p>気に入った場所の「ためしてみよう」を、今週ひとつだけやってみよう。うまくいかなくても大丈夫。やってみたことが、もう一歩だよ。パパやママ、友だちの「大陸」も、聞いてみてね。</p></div>
+<button class="btn" onclick="A2.menu()">📍 もどって、ほかのものがたりもやる</button><button class="btn" onclick="openA()">🌱 「どうしようかな？」でもっとためす</button><button class="btn" onclick="openC('t')">🎴 ちからカードのアルバム</button><button class="btn go" onclick="A2.init()">はじめから冒険する</button>`;
+Object.assign(sc,bs);app.innerHTML=h;scrollTo(0,0)}
+let tg=new Set();try{tg=new Set(JSON.parse(localStorage.getItem("tgt")||"[]"))}catch(e){}
+function tip(k){const sk='<rect width="200" height="150" fill="#cfeaff"/>',L={
+g:sk+'<path d="M-10 130L60 40l40 60 30-34 80 64z" fill="#8c9bb5"/><path d="M60 40l-12 18 12-4 8 8z" fill="#fff"/><rect y="124" width="200" height="26" fill="#7fc47a"/><circle cx="140" cy="100" r="16" fill="#fff6" stroke="#8a5a2b" stroke-width="5"/><path d="M152 112l18 18" stroke="#8a5a2b" stroke-width="6" stroke-linecap="round"/>',
+s:sk+'<rect y="120" width="200" height="30" fill="#7fc47a"/><rect x="58" y="56" width="84" height="64" fill="#cbb8e8"/><rect x="48" y="40" width="22" height="80" fill="#b9a2de"/><rect x="130" y="40" width="22" height="80" fill="#b9a2de"/><path d="M48 40l11-16 11 16zM130 40l11-16 11 16z" fill="#7a5cc0"/><path d="M84 120v-26q16-18 32 0v26z" fill="#6a4aa8"/><rect x="98" y="8" width="2" height="30" fill="#555"/><path d="M100 8l16 5-16 5z" fill="#ef6f8d"/>',
+a:sk+'<rect y="120" width="200" height="30" fill="#e6c88f"/><rect x="14" y="76" width="44" height="44" fill="#f2994a"/><path d="M10 76l26-24 26 24z" fill="#c8553d"/><rect x="70" y="60" width="52" height="60" fill="#56c596"/><path d="M66 60l30-26 30 26z" fill="#2f8f6a"/><rect x="134" y="84" width="40" height="36" fill="#9b7ede"/><path d="M130 84l24-20 24 20z" fill="#6a4aa8"/><circle cx="96" cy="22" r="11" fill="#ffe27a" stroke="#e0a526" stroke-width="2"/><path d="M92 34h8v5h-8z" fill="#e0a526"/>',
+n:'<rect width="200" height="150" fill="#d9f0d0"/><rect y="118" width="200" height="32" fill="#6fae6a"/><rect x="22" y="70" width="8" height="52" fill="#8a5a2b"/><circle cx="26" cy="62" r="24" fill="#4f9a5a"/><rect x="150" y="60" width="9" height="62" fill="#8a5a2b"/><circle cx="154" cy="52" r="28" fill="#3f8a4c"/><rect x="96" y="80" width="7" height="42" fill="#8a5a2b"/><circle cx="99" cy="74" r="20" fill="#5fb36a"/><path d="M62 118q12-26 24 0z" fill="#ef6f8d"/><rect x="71" y="116" width="6" height="8" fill="#fff"/><circle cx="124" cy="120" r="9" fill="#f2994a"/>',
+m:'<rect width="200" height="150" fill="#bfe6ff"/><rect y="96" width="200" height="54" fill="#5fb7e8"/><path d="M0 110q25-8 50 0t50 0 50 0 50 0v6H0z" fill="#8fd0f2"/><ellipse cx="100" cy="106" rx="62" ry="16" fill="#f2d79b"/><path d="M96 104V70M96 70q-22-4-30 8M96 70q22-4 30 8" stroke="#4f9a5a" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="168" cy="28" r="14" fill="#ffd95a"/>'};
+return `<svg viewBox="0 0 200 150" role="img" aria-label="イラスト" style="width:100%;height:auto;display:block;border-radius:14px">${L[k]}</svg>`}
+function tipCards(){const o=[];K.forEach(k=>P[k].t.forEach((x,i)=>o.push({id:"t"+k+i,e:tip(k),t:P[k].l,sb:P[k].n,x,c:P[k].c,own:tg.has("t"+k+i)})));return o}
+let vis=new Set();
+const VS={g:"⛰ ぼくは、ふかぼり山をのぼった。てっぺんからは遠くまで見わたせる。「なぜ？」の答えが、星みたいに光っているよ。",s:"🏰 ぼくは、ルールの城の大きな門をくぐった。広間には、地図や手じゅんの書かれた巻物がならんでいる。ここにいると安心できる。",a:"🏘 ぼくは、ひらめきの町に着いた。広場では、アイデアのランタンがぽんぽんと打ち上がっている！",n:"🌲 ぼくは、ゆっくりの森に入った。木もれ日の中で、川の音が聞こえる。急がなくても大丈夫。",m:"🏝 ぼくは、船でようすの島にわたった。灯台の光が、今日の気分をやさしく照らしている。"};
+const VE={g:"🌟",s:"📜",a:"🎆",n:"🍃",m:"💡"};
+function visit(k){vis.add(k);const p=P[k],d=document.getElementById('dlg');
+d.innerHTML=`<div class="card pop">${tip(k)}<h2>${p.l}</h2><p>${VS[k]}</p><button class="btn" id="tb">🎁 宝箱を開ける（カードがもらえるよ）</button><div id="tr"></div></div>`;
+document.getElementById('tb').onclick=function(){const un=[0,1].filter(i=>!tg.has('t'+k+i)),ix=un.length?un[Math.random()*un.length|0]:Math.random()*2|0,id='t'+k+ix,nw=tg.has(id)?0:1;tg.add(id);try{localStorage.setItem('tgt',JSON.stringify([...tg]))}catch(e){}document.getElementById('tr').innerHTML=`<div class="tip pop">${VE[k]} <b>宝もの：</b>${p.t[ix]}</div><button class="btn" onclick="Cd.show('${id}',${nw})">🎴 カードを大きく見る</button>`;this.remove();setTimeout(()=>Cd.show(id,nw),350)};
+document.getElementById('vc').textContent=vis.size>=5?'🎉 大陸をぜんぶたんけんした！ すごい！（5 / 5）':`👆 場所をタップして、たんけんしよう（${vis.size} / 5）`;
+d.scrollIntoView({behavior:'smooth',block:'nearest'})}
+
+return {menu,turn,res,init,visit,intro,tipCards};})();
+const Cd=(function(){
+const LC=["","#7bbf7f","#4a9d5b","#3b8fa8","#8a7ac0","#e0a526"];
+function all(){const hc=A1.hintCards().map((c,i)=>({...c,n:i+1,c:LC[c.lv],r:c.lv<=2?1:c.lv==3?2:3,k:"ヒントカード",s:"🌿".repeat(c.lv)}));
+const tc=A2.tipCards().map((c,i)=>({...c,n:hc.length+i+1,r:4,k:"ちからカード",s:c.sb}));return hc.concat(tc)}
+const no=c=>"No."+String(c.n).padStart(3,"0");
+const stars=c=>"★".repeat(c.r)+"☆".repeat(4-c.r);
+function card(c){return `<div class="cc ${c.r>=3?"foil":""}" style="--cc:${c.c}"><div class="ct"><span>${no(c)}</span><span>${stars(c)}</span></div><div class="ce">${c.e}</div><div class="cn">${c.t}</div><div class="cs">${c.s||""}</div><div class="cx">${c.x}</div><div class="cf">${c.k}</div></div>`}
+function close(){const o=document.getElementById("ov");if(o)o.remove()}
+function show(id,nw){const c=all().find(x=>x.id==id);if(!c||!c.own)return;close();const o=document.createElement("div");o.id="ov";o.innerHTML=`<div class="ovb">${nw?'<div class="new">✨ NEW！ カードをゲット ✨</div>':''}${card(c)}<button class="ovx">とじる</button></div>`;o.onclick=close;document.body.appendChild(o)}
+function prog(){const a=all(),n=a.filter(x=>x.own).length,e=document.getElementById("cs");if(e)e.textContent=`あつめたカード ${n} / ${a.length}　タップで大きく見られるよ`}
+function album(tab){tab=tab||"all";const a=all(),n=a.filter(x=>x.own).length,l=a.filter(x=>tab=="all"||(tab=="h"?x.k=="ヒントカード":x.k=="ちからカード"));
+document.getElementById("m3").innerHTML=`<h1>🎴 カードコレクション</h1><p class="lead">あつめたカード ${n} / ${a.length}。タップすると大きく見られるよ。</p><div style="text-align:center">${[["all","ぜんぶ"],["h","ヒントカード"],["t","ちからカード"]].map(([k,v])=>`<button class="tab ${tab==k?"on":""}" onclick="openC('${k}')">${v}</button>`).join("")}</div><div class="grid">${l.map(c=>c.own?`<button class="mc" style="--cc:${c.c}" onclick="Cd.show('${c.id}')"><span class="me2">${c.e}</span><b>${c.t}</b><i>${stars(c)}</i></button>`:`<div class="mc lk"><span class="me2" style="font-size:34px;color:#aaa">？</span><b>${no(c)}</b></div>`).join("")}</div><p class="note" style="margin:14px">ヒントカードは、場面をさいごまで進めるとゲット。ちからカードは、大陸の宝箱から出てくるよ。</p>`;scrollTo(0,0)}
+return {show,close,album,prog}})();
+function openC(t){show("s3");Cd.album(t)}
+function show(id){["hub","s1","s2","s3"].forEach(x=>document.getElementById(x).hidden=x!==id);scrollTo(0,0)}
+function hub(){show("hub");Cd.prog()}
+function openA(){show("s1");A1.home()}
+Cd.prog();let b2=0;function openB(){show("s2");b2?A2.menu():(b2=1,A2.init())}
 </script></body></html>
